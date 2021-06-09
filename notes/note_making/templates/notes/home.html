@@ -1,0 +1,24 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block main_content %}
+<!--  TODO: Home  code goes here. Show recent posts. last 3 days-->
+
+    {% for note in notes %}
+        <div class="home-note card">
+            <img class="note-icon" src="{% static 'notes/images/book.png' %}">
+            <h2 class="note-title">{{ note.title }} </h2>
+            <hr>
+            <h4 class="note-content">
+                {{ note.content|slice:":50" }}
+                {% if note.content|length > 50 %}
+                    <a href="#">Read more...</a>
+                {% endif %}
+            </h4>
+            <div>
+                <h6>Date Created: {{ note.date_of_creation }}</h6>
+                <h5><a href="#">visit note...</a></h5>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock main_content %}

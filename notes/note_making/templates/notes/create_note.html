@@ -1,0 +1,11 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block main_content %}
+<!--    TODO note code goes here. Make form-->
+    <form method="POST" class="create-form">
+        {% csrf_token %}
+        {{ form }}
+        <button>submit</button>
+    </form>
+{% endblock main_content %}
