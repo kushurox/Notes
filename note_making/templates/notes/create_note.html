@@ -3,9 +3,20 @@
 
 {% block main_content %}
 <!--    TODO note code goes here. Make form-->
+    {% for message in messages %}
+        <p style="position: absolute; color: red;">{{message}}</p>
+    {% endfor %}
     <form method="POST" class="create-form">
         {% csrf_token %}
         {{ form }}
         <button>submit</button>
     </form>
 {% endblock main_content %}
+
+{% block scripts %}
+    <script>
+        {% if messages %}
+            $('#id_title').val("Already exists")
+        {% endif %}
+    </script>
+{% endblock scripts %}

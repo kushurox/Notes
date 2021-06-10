@@ -4,7 +4,7 @@ from django.utils import timezone
 # Create your models here.
 
 class Note(models.Model):
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=20, primary_key=True)
     content = models.TextField()
     date_of_creation = models.DateTimeField(default=timezone.now)
     category = models.CharField(max_length=20, default=None)

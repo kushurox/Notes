@@ -13,8 +13,15 @@ class NewNote(forms.Form):
                             widget=forms.TextInput(attrs={'class': "form-title",
                                                           'placeholder': 'Enter your Category'}))
 
-    def save(self) -> Note:
-        n = Note(title=self.cleaned_data['title'],
+    def save(self) -> bool:
+        if len(Note.objects.filter(title=self.cleaned_data['title'].title())) != 0:
+            return False
+
+        n = Note(title=self.cleaned_data['title'].title(),
                  content=self.cleaned_data['content'], category=self.cleaned_data['category'].title())
         n.save()
-        return n
+        return True
+
+
+    def set_title_ini(self, ini):
+        self.title.initial = ini

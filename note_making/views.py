@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Note
 from .forms import NewNote
 from collections import defaultdict
-
 
 def home(req):
     """
@@ -34,8 +34,12 @@ def new_note(req):
     if req.method == "POST":
         form = NewNote(req.POST)
         if form.is_valid():
-            form.save()
-            return redirect('notes-home')
+            if form.save():
+                return redirect('notes-home')
+            else:
+                messages.error(req, "Note with that title already exists!")
+                return render(req, 'notes/create_note.html', {'form': form, 'title': 'New Note!'})
+
 
     form = NewNote()
     context = {
