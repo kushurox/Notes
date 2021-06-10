@@ -1,6 +1,10 @@
 {% extends "notes/base.html" %}
 {% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'notes/css/notes.css' %}">
+{% endblock styles %}
+
 {% block main_content %}
 <!--    TODO: notes code goes here-->
     <div class="notes-container">

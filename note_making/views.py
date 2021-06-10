@@ -1,15 +1,19 @@
+from django.db.models import DateTimeField
+from django.db.models.functions import Trunc
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Note
 from .forms import NewNote
 from collections import defaultdict
 
+
 def home(req):
     """
     Manages The logic for home.html
     """
     context = {
-        "notes": Note.objects.all()[::-1],
+        "notes": Note.objects.order_by(
+            Trunc('date_of_creation', 'date', output_field=DateTimeField()).desc(), '-date_of_creation'),
         "title": "Notes"
     }
 
@@ -40,10 +44,20 @@ def new_note(req):
                 messages.error(req, "Note with that title already exists!")
                 return render(req, 'notes/create_note.html', {'form': form, 'title': 'New Note!'})
 
-
     form = NewNote()
     context = {
         'title': 'New Note!',
         'form': form
     }
     return render(req, 'notes/create_note.html', context)
+
+
+def info(req, title):
+    """
+    Manages the logic for info.html
+    """
+    context = {
+        'title': title,
+        'note_data': Note.objects.filter(title=title),
+    }
+    return render(req, 'notes/info.html', context)

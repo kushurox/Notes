@@ -1,11 +1,12 @@
 {% extends "notes/base.html" %}
 {% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'notes/css/new.css' %}">
+{% endblock styles %}
+
 {% block main_content %}
 <!--    TODO note code goes here. Make form-->
-    {% for message in messages %}
-        <p style="position: absolute; color: red;">{{message}}</p>
-    {% endfor %}
     <form method="POST" class="create-form">
         {% csrf_token %}
         {{ form }}
@@ -16,7 +17,9 @@
 {% block scripts %}
     <script>
         {% if messages %}
-            $('#id_title').val("Already exists")
+            $('#id_title').val('')
+            $('#id_title').attr('placeholder', "Title already exists")
+            $('#id_title').css('border-bottom', '2px solid red')
         {% endif %}
     </script>
 {% endblock scripts %}

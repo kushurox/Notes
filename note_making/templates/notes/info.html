@@ -1,0 +1,13 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+
+{% block main_content %}
+<!-- info code goes here-->
+    {% if not note_data %}
+        <h2>This note does not exist</h2>
+    {% else %}
+        <h2>It exists!</h2>
+    {% endif %}
+
+{% endblock %}
