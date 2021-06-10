@@ -13,6 +13,16 @@
     {% if not note_data %}
         <h2>This note does not exist</h2>
     {% else %}
+        <div class="note-content">
+        <h1 id="note-title">{{ note_data.0.title }}</h1>
+        <hr>
+            <form id="note-desc" method="POST">
+                {% csrf_token %}
+                {{ edit_form }}
+                <button type="button" id="fake_edit_note" class="fake-edit">Edit</button>
+                <button id="real_edit_note" class="fake-edit">Save</button>
+            </form>
+        </div>
         <button class="fake" id="fake">Delete Page!</button>
         <form method="POST" class="delform">
             {% csrf_token %}
@@ -26,4 +36,7 @@
 
 {% block scripts %}
 <script src="{% static 'notes/js/info.js' %}"></script>
+<script>
+    $("#content").val(`{{ note_data.0.content }}`)
+</script>
 {% endblock scripts %}

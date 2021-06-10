@@ -1,9 +1,8 @@
 from django.db.models import DateTimeField
 from django.db.models.functions import Trunc
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from .models import Note
-from .forms import NewNote
+from .forms import NewNote, EditNote
 from collections import defaultdict
 
 
@@ -59,12 +58,29 @@ def info(req, title):
     """
     Manages the logic for info.html
     """
-    if req.method == "POST" and 'delete' in req.POST:
-        Note.objects.filter(title=title)[0].delete()
-        return redirect('notes-home')
+    if req.method == "POST":
+        if 'delete' in req.POST:
+            Note.objects.filter(title=title)[0].delete()
+            return redirect('notes-home')
+        elif 'content' in req.POST:
+            n = Note.objects.get(title=title)
+            n.content = req.POST['content']
+            n.save()
+
+
+            # TODO pls ask someone for help later since this isn't working as of now
+
+            # form.is_valid()
+
+            # redirect them to diff page
+
+    notes = Note.objects.filter(title=title)
+
+    form = EditNote()
 
     context = {
         'title': title,
-        'note_data': Note.objects.filter(title=title),
+        'note_data': notes,
+        'edit_form': form
     }
     return render(req, 'notes/info.html', context)

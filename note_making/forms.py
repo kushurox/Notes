@@ -23,5 +23,12 @@ class NewNote(forms.Form):
         return True
 
 
-    def set_title_ini(self, ini):
-        self.title.initial = ini
+class EditNote(forms.Form):
+    content = forms.CharField(widget=forms.Textarea(attrs={'id': 'content',
+                                                           'placeholder': 'Notes go here...'}),
+                              disabled=True, label="", required=True)
+
+    def edit(self, title):
+        note = Note.objects.filter(title=title)[0]
+        note.content = self.cleaned_data['content']
+        note.save()
