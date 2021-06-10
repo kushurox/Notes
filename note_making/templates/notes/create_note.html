@@ -16,7 +16,7 @@
 
 {% block scripts %}
     <script>
-        {% if messages %}
+        {% if error %}
             $('#id_title').val('')
             $('#id_title').attr('placeholder', "Title already exists")
             $('#id_title').css('border-bottom', '2px solid red')

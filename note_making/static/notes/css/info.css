@@ -1,0 +1,19 @@
+.fake{
+    background: none;
+    border: 2px solid red;
+    padding: 1%;
+    border-radius: 10px;
+    font-size: large;
+    background-color: white;
+}
+
+.fake:hover{
+    transition: 0.5s;
+    background-color: red;
+
+}
+
+.delform{
+    font-size: larger;
+    color: red;
+}

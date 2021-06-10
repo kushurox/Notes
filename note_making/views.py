@@ -11,6 +11,7 @@ def home(req):
     """
     Manages The logic for home.html
     """
+
     context = {
         "notes": Note.objects.order_by(
             Trunc('date_of_creation', 'date', output_field=DateTimeField()).desc(), '-date_of_creation'),
@@ -36,13 +37,15 @@ def new_note(req):
     Manages the logic for create_note.html
     """
     if req.method == "POST":
+        error = False
         form = NewNote(req.POST)
         if form.is_valid():
             if form.save():
                 return redirect('notes-home')
             else:
-                messages.error(req, "Note with that title already exists!")
-                return render(req, 'notes/create_note.html', {'form': form, 'title': 'New Note!'})
+                error = True
+                return render(req, 'notes/create_note.html', {'form': form, 'title': 'New Note!',
+                                                              'error': error})
 
     form = NewNote()
     context = {
@@ -56,6 +59,10 @@ def info(req, title):
     """
     Manages the logic for info.html
     """
+    if req.method == "POST" and 'delete' in req.POST:
+        Note.objects.filter(title=title)[0].delete()
+        return redirect('notes-home')
+
     context = {
         'title': title,
         'note_data': Note.objects.filter(title=title),

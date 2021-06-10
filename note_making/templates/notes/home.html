@@ -9,7 +9,7 @@
 {% block main_content %}
 <!--  TODO: Home  code goes here. Show recent posts. last 3 days-->
 
-    {% for note in notes %}
+    {% for note in notes|slice:":5" %}
         <div class="home-note card">
             <img class="note-icon" src="{% static 'notes/images/book.png' %}">
             <h2 class="note-title">{{ note.title }} </h2>

@@ -1,13 +1,29 @@
 {% extends "notes/base.html" %}
 {% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'notes/css/info.css' %}">
+<link rel="stylesheet" href="{% static 'notes/css/notes.css' %}">
+{% endblock styles %}
+
 
 {% block main_content %}
 <!-- info code goes here-->
+    <div class="notes-container">
     {% if not note_data %}
         <h2>This note does not exist</h2>
     {% else %}
-        <h2>It exists!</h2>
+        <button class="fake" id="fake">Delete Page!</button>
+        <form method="POST" class="delform">
+            {% csrf_token %}
+            <label>Do you really want to delete the Note:</label>
+            <input type="submit" name="delete" value="Yes" class="fake">
+        </form>
     {% endif %}
+    </div>
 
 {% endblock %}
+
+{% block scripts %}
+<script src="{% static 'notes/js/info.js' %}"></script>
+{% endblock scripts %}
