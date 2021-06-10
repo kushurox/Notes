@@ -10,8 +10,8 @@
             <h2 class="note-title">{{ note.title }} </h2>
             <hr>
             <h4 class="note-content">
-                {{ note.content|slice:":50" }}
-                {% if note.content|length > 50 %}
+                {{ note.content|slice:":300" }}
+                {% if note.content|length > 300 %}
                     <a href="#">Read more...</a>
                 {% endif %}
             </h4>

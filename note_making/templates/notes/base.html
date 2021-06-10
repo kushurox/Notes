@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'notes/css/base.css' %}">
     <link rel="stylesheet" href="{% static 'notes/css/home.css' %}">
     <link rel="stylesheet" href="{% static 'notes/css/new.css' %}">
+    <link rel="stylesheet" href="{% static 'notes/css/notes.css' %}">
     {% if title %}
         <title> {{ title }} </title>
     {% else %}
@@ -27,5 +28,7 @@
         {% block main_content %}
         {% endblock %}
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'notes/js/notes.js' %}"></script>
 </body>
 </html>

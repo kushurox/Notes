@@ -2,4 +2,17 @@
 
 {% block main_content %}
 <!--    TODO: notes code goes here-->
+    <div class="notes-container">
+        {% for category in notes %}
+        <div class="item">
+            <h3>{{category.0}}</h3>
+            <ul class="titles">
+            {% for titles in category.1 %}
+                <li><a href="#">{{titles}}</a></li>
+            {% endfor %}
+            </ul>
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock main_content %}

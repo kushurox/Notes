@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+
+.notes-container{
+    background-color: white;
+    min-height: 90vh;
+    width: 90vw;
+    margin-left: 3vw;
+    margin-top: 5vh;
+    padding: 2%;
+    border-radius: 10px;
+}
+
+.notes-container .item{
+    background-color: wheat;
+    margin: 1%;
+    padding: 1%;
+    min-height: fit-content;
+    /* border-radius: 10px; */
+    
+}
+
+.notes-container .item h3{
+    font-family: Odibee Sans;
+    font-size: x-large;
+    text-align: center;
+}
+
+.notes-container .item h3:hover{
+    border-bottom: 2px solid black;
+}
+
+.notes-container ul{
+    list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.notes-container ul li{
+    padding: 1%;
+}
+
+.notes-container ul li:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.notes-container ul li a{
+    text-decoration: none;
+    color: black;
+}

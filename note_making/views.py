@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Note
 from .forms import NewNote
+from collections import defaultdict
 
-
-# Create your views here.
 
 def home(req):
+    """
+    Manages The logic for home.html
+    """
     context = {
-        "notes": Note.objects.all(),
+        "notes": Note.objects.all()[::-1],
         "title": "Notes"
     }
 
@@ -15,10 +17,20 @@ def home(req):
 
 
 def notes(req):
-    return render(req, 'notes/notes.html')
+    """
+    Manages the logic for notes.html
+    """
+    note_map = defaultdict(lambda: [])
+    for i in Note.objects.all():
+        note_map[i.category].append(i.title)
+
+    return render(req, 'notes/notes.html', {'notes': note_map.items()})
 
 
 def new_note(req):
+    """
+    Manages the logic for create_note.html
+    """
     if req.method == "POST":
         form = NewNote(req.POST)
         if form.is_valid():

@@ -15,6 +15,6 @@ class NewNote(forms.Form):
 
     def save(self) -> Note:
         n = Note(title=self.cleaned_data['title'],
-                 content=self.cleaned_data['content'], category=self.cleaned_data['category'])
+                 content=self.cleaned_data['content'], category=self.cleaned_data['category'].title())
         n.save()
         return n
