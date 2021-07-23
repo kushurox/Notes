@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
-
-with open('password.txt', 'r') as fp:
+with open('/Users/Kushi/PycharmProjects/DontLeaveMeUnfinished/notes/password.txt', 'r') as fp:
     password = fp.read()
 
 
