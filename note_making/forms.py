@@ -10,8 +10,8 @@ class NewNote(forms.Form):
                                                            'placeholder': 'Notes go here...'}), required=True)
 
     category = forms.CharField(max_length=20, required=True,
-                            widget=forms.TextInput(attrs={'class': "form-title",
-                                                          'placeholder': 'Enter your Category'}))
+                               widget=forms.TextInput(attrs={'class': "form-title",
+                                                             'placeholder': 'Enter your Category'}))
 
     def save(self) -> bool:
         if len(Note.objects.filter(title=self.cleaned_data['title'].title())) != 0:

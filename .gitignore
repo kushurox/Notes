@@ -131,3 +131,5 @@ dmypy.json
 db.sqlite3
 
 .idea
+
+notes/password.txt
