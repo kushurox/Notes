@@ -3,7 +3,7 @@
 
 
 .create-form{
-    background-color: black;
+    background-color: black; /*  Page Color    */
     min-height: 100vh;
     /* margin: 3%; */
     padding: 20px;
@@ -11,7 +11,7 @@
 
 .create-form *{
     display: block;
-    color: white;
+    color: white; /* Place Holder color */
 }
 
 .create-form label{
@@ -33,7 +33,7 @@
 }
 
 .create-form input[type=text]::placeholder{
-    color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);  /* PlaceHolder Color */
 }
 
 .create-form input[type=text]:focus{
